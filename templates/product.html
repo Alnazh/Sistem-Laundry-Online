@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+
+    <head>
+        <meta charset="utf-8">
+        <title>GoLaundry - Cek Status Pesanan</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{{url_for('static', filename = 'lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{url_for('static', filename = 'lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Memuat...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary"><i class="fas fa-soap me-3"></i>GoLaundry</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ url_for('index') }}" class="nav-item nav-link">Beranda</a>
+                        <a href="{{ url_for('about') }}" class="nav-item nav-link">Tentang</a>
+                        <a href="{{ url_for('service') }}" class="nav-item nav-link">Layanan</a>
+                        <a href="{{ url_for('blog') }}" class="nav-item nav-link">Artikel</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ url_for('feature') }}" class="dropdown-item">Syarat & Ketentuan</a>
+                                <a href="{{ url_for('product') }}" class="dropdown-item">Cek status Pesanan</a>
+                                <a href="{{ url_for('team') }}" class="dropdown-item">Tim Kami</a>
+                                <a href="{{ url_for('testimonial') }}" class="dropdown-item">Testimoni</a>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('contact') }}" class="nav-item nav-link">Order</a>
+                    </div>
+                    <div class="d-none d-xl-flex me-3">
+                        <div class="d-flex flex-column pe-3 border-end border-primary">
+                            <span class="text-body">Pengiriman Cepat</span>
+                            <a href="tel:+4733378901"><span class="text-primary">Telp: +62 123 456 7890</span></a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">Pesan Sekarang</a>
+                </div>
+            </nav>
+
+            <!-- Header Start -->
+            <div class="container-fluid bg-breadcrumb">
+                <div class="container text-center py-5" style="max-width: 900px;">
+                    <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Cek Status Pesanan</h4>
+                    <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="#">Halaman</a></li>
+                        <li class="breadcrumb-item active text-primary">Status Pesanan</li>
+                    </ol>    
+                </div>
+            </div>
+            <!-- Header End -->
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Order Status Start -->
+        <div class="container-fluid product py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Pelacakan Pesanan</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Cek Status Laundry Anda</h1>
+                    <p class="mb-4">Masukkan nomor pesanan atau nomor telepon Anda untuk melacak status laundry</p>
+                </div>
+                
+                <!-- Search Form -->
+                <div class="row justify-content-center mb-5 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-lg-8">
+                        <div class="bg-light p-4 rounded">
+                            <form id="orderStatusForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Nomor Pesanan" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Nomor Telepon" required>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-primary btn-lg rounded-pill px-5 py-3" type="submit">Cek Status</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Status Result -->
+                <div class="row g-4 justify-content-center" id="orderStatusResult">
+                    <div class="col-12 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="bg-light p-5 rounded text-center">
+                            <div class="mb-4">
+                                <i class="fas fa-truck fa-3x text-primary mb-3"></i>
+                                <h3 class="mb-3">Status Pesanan Anda</h3>
+                                <p class="mb-0">Silakan masukkan nomor pesanan dan telepon untuk melihat status</p>
+                            </div>
+                            
+                            <!-- This will be populated with actual order data after form submission -->
+                            <div class="order-details" style="display: none;">
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="p-3 border rounded">
+                                            <h5 class="text-primary">Nomor Pesanan</h5>
+                                            <p class="mb-0" id="orderNumber">GL-20250711-001</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="p-3 border rounded">
+                                            <h5 class="text-primary">Tanggal Masuk</h5>
+                                            <p class="mb-0" id="orderDate">11 Juli 2025</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="p-3 border rounded">
+                                            <h5 class="text-primary">Estimasi Selesai</h5>
+                                            <p class="mb-0" id="estimatedCompletion">13 Juli 2025</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress mb-4" style="height: 30px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75% Selesai</div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="step completed">
+                                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                                            <h6>Diterima</h6>
+                                            <small>11 Juli, 10:30</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step completed">
+                                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                                            <h6>Dicuci</h6>
+                                            <small>11 Juli, 14:15</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step active">
+                                            <div class="step-icon"><i class="fas fa-sync-alt fa-spin"></i></div>
+                                            <h6>Dikeringkan</h6>
+                                            <small>Sedang diproses</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="step">
+                                            <div class="step-icon"><i class="far fa-clock"></i></div>
+                                            <h6>Selesai</h6>
+                                            <small>Menunggu</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-5">
+                                    <h4 class="mb-3">Detail Pesanan</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-primary text-white">
+                                                <tr>
+                                                    <th>Jenis Layanan</th>
+                                                    <th>Berat (kg)</th>
+                                                    <th>Harga</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cuci + Setrika</td>
+                                                    <td>3.5</td>
+                                                    <td>Rp 15.000/kg</td>
+                                                    <td>Rp 52.500</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dry Clean Jaket</td>
+                                                    <td>1</td>
+                                                    <td>Rp 35.000</td>
+                                                    <td>Rp 35.000</td>
+                                                </tr>
+                                                <tr class="fw-bold">
+                                                    <td colspan="3">Total</td>
+                                                    <td>Rp 87.500</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                <button type="button" class="btn btn-primary" id="printStrukBtn">
+                                    <i class="fas fa-print me-2"></i> Cetak Struk
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Order Status End -->
+
+        <!-- Order Receipt Modal -->
+        <div class="modal fade" id="orderReceiptModal" tabindex="-1" aria-labelledby="orderReceiptModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="orderReceiptModalLabel">Struk Pesanan Laundry</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <h4 class="text-primary"><i class="fas fa-soap me-2"></i>GoLaundry</h4>
+                            <p class="mb-0">Jl. Adipati No.123, Bandung</p>
+                            <p>Telp: +62 123 456 7890</p>
+                        </div>
+                        
+                        <div class="receipt-details">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <strong>Nomor Pesanan:</strong>
+                                    <p id="receipt-order-number">GL-20250713-001</p>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <strong>Tanggal:</strong>
+                                    <p id="receipt-date">13 Juli 2025</p>
+                                </div>
+                            </div>
+                            
+                            <div class="customer-info mb-4">
+                                <h6 class="border-bottom pb-2">Informasi Pelanggan</h6>
+                                <p><strong>Nama:</strong> <span id="receipt-name">-</span></p>
+                                <p><strong>Telepon:</strong> <span id="receipt-phone">-</span></p>
+                            </div>
+                            
+                            <div class="order-details mb-4">
+                                <h6 class="border-bottom pb-2">Detail Pesanan</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Layanan</th>
+                                                <th>Berat</th>
+                                                <th>Harga</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="receipt-items">
+                                            <tr>
+                                                <td>Cuci + Setrika</td>
+                                                <td>3.5 kg</td>
+                                                <td>Rp 15.000/kg</td>
+                                                <td>Rp 52.500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dry Clean Jaket</td>
+                                                <td>1 item</td>
+                                                <td>Rp 35.000</td>
+                                                <td>Rp 35.000</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="3">Total</th>
+                                                <th>Rp 87.500</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-info mb-3">
+                                <h6 class="border-bottom pb-2">Status Pesanan</h6>
+                                <p><strong>Status:</strong> Sedang Diproses (75%)</p>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i> Terima kasih telah menggunakan layanan GoLaundry.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-primary" id="print-receipt">
+                            <i class="fas fa-print me-2"></i> Cetak Struk
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Order Receipt Modal -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <div class="footer-item">
+                                <h3 class="text-white mb-4"><i class="fas fa-soap text-primary me-3"></i>GoLaundry</h3>
+                                <p class="mb-3">Layanan laundry dan dry cleaning profesional dengan antar jemput gratis. Pakaian Anda layak mendapatkan perawatan terbaik.</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <a href="tel:+621234567890" class="h5 d-inline-block mb-0 text-white">+62 123 456 7890</a>
+                                    <p class="mb-0 text-white">24/7 Customer Service</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Layanan Kami</h4>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Lipat</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Setrika</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Dry Cleaning</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Layanan Express</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Karpet</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Sepatu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Jam Operasional</h4>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Senin - Jumat:</h6>
+                                <p class="text-white mb-0">09.00 - 20.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Sabtu - Minggu:</h6>
+                                <p class="text-white mb-0">08.00 - 19.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Layanan Darurat:</h6>
+                                <p class="text-white mb-0">24 Jam (Extra Charge)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Hubungi Kami</h4>
+                            <a href="#"><i class="fa fa-map-marker-alt me-2"></i> Jl. Adipati No.123, Bandung</a>
+                            <a href="mailto:info@golaundry.com"><i class="fas fa-envelope me-2"></i> info@golaundry.com</a>
+                            <a href="mailto:cs@golaundry.com"><i class="fas fa-envelope me-2"></i> cs@golaundry.com</a>
+                            <a href="https://wa.me/621234567890"><i class="fab fa-whatsapp me-2"></i> +62 123 456 7890</a>
+                            <div class="d-flex mt-3">
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-0" href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>GoLaundry</a>, Hak Cipta Dilindungi.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        Designed By <a class="border-bottom text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom text-white" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{url_for('static', filename = 'lib/wow/wow.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/easing/easing.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/counterup/counterup.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        
+        <!-- Template Javascript -->
+        <script src="{{url_for('static', filename = 'js/main.js') }}"></script>
+    </body>
+</html>

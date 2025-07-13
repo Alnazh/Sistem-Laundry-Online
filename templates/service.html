@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+
+    <head>
+        <meta charset="utf-8">
+        <title>GoLaundry - Layanan Laundry</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{{url_for('static', filename = 'lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{url_for('static', filename = 'lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Memuat...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary"><i class="fas fa-soap me-3"></i>GoLaundry</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ url_for('index') }}" class="nav-item nav-link">Beranda</a>
+                        <a href="{{ url_for('about') }}" class="nav-item nav-link">Tentang</a>
+                        <a href="{{ url_for('service') }}" class="nav-item nav-link">Layanan</a>
+                        <a href="{{ url_for('blog') }}" class="nav-item nav-link">Artikel</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ url_for('feature') }}" class="dropdown-item">Syarat & Ketentuan</a>
+                                <a href="{{ url_for('product') }}" class="dropdown-item">Cek status Pesanan</a>
+                                <a href="{{ url_for('team') }}" class="dropdown-item">Tim Kami</a>
+                                <a href="{{ url_for('testimonial') }}" class="dropdown-item">Testimoni</a>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('contact') }}" class="nav-item nav-link">Order</a>
+                    </div>
+                    <div class="d-none d-xl-flex me-3">
+                        <div class="d-flex flex-column pe-3 border-end border-primary">
+                            <span class="text-body">Gratis Antar Jemput</span>
+                            <a href="tel:+4733378901"><span class="text-primary">Telp: +62 123 456 7890</span></a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">Pesan Sekarang</a>
+                </div>
+            </nav>
+
+            <!-- Header Start -->
+            <div class="container-fluid bg-breadcrumb">
+                <div class="container text-center py-5" style="max-width: 900px;">
+                    <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Layanan Kami</h4>
+                    <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Beranda</a></li>
+                        <li class="breadcrumb-item active text-primary">Layanan</li>
+                    </ol>    
+                </div>
+            </div>
+            <!-- Header End -->
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Promo Start -->
+        <div class="container-fluid promo py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Promo Spesial</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Penawaran Terbaik untuk Pelanggan Kami</h1>
+                    <p class="mb-0">Nikmati berbagai promo menarik dari GoLaundry untuk perawatan pakaian Anda</p>
+                    <p class="mb-2">* Syarat dan ketentuan berlaku</p>
+                </div>
+                    
+                <div class="row g-4 justify-content-center">
+
+                    <!-- Promo 1 -->
+                    <div class="col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="promo-item bg-light rounded text-center position-relative overflow-hidden">
+                            <div class="promo-ribbon"><span>New</span></div>
+                            <div class="promo-header p-4">
+                                <h4 class="text-primary">Paket Keluarga</h4>
+                                <h1 class="display-4 mb-0">50.000</h1>
+                                <p class="text-muted">Max. 10kg</p>
+                            </div>
+                            <div class="promo-body p-4">
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Cuci, Lipat & Setrika</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Gratis Pewangi</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>3 Hari Penyelesaian</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Gratis Kantung Laundry</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Kode: FAM30</li>
+                                </ul>
+                                <div class="promo-expire mb-3">
+                                    <i class="fas fa-clock text-primary me-2"></i>Berlaku hingga 30 November 2025
+                                </div>
+                                <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill py-2 px-4">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo 2 -->
+                    <div class="col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="promo-item bg-light rounded text-center position-relative">
+                            <div class="promo-ribbon"><span>Limited</span></div>
+                            <div class="promo-header p-1">
+                                <h4 class="text-primary">Weekend Sale</h4>
+                                <h1 class="display-4 mb-0">10.000/kg</h1>
+                                <p class="text-muted">Sabtu-Minggu</p>
+                            </div>
+                            <div class="promo-body p-4">
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Cuci & Setrika Kilat</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Min. Order 3kg</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>1 Hari Penyelesaian</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Hanya di Outlet</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Kode: END30</li>
+                                </ul>
+                                <div class="promo-expire mb-3">
+                                    <i class="fas fa-clock text-primary me-2"></i>Setiap akhir pekan
+                                </div>
+                                <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill py-2 px-4">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                                            
+                    <!-- Promo 3 -->
+                    <div class="col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="promo-item bg-light rounded text-center position-relative">
+                            <div class="promo-ribbon"><span>Best Deal</span></div>
+                            <div class="promo-header p-1">
+                                <h4 class="text-primary">Member Baru</h4>
+                                <h1 class="display-4 mb-0">30% OFF</h1>
+                                <p class="text-muted">Order Pertama</p>
+                            </div>
+                            <div class="promo-body p-4">
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Diskon 30% Order Pertama</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Min. Order 5kg</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Gratis Antar-Jemput</li>
+                                    <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Kode: NEW30</li>
+                                </ul>
+                                <div class="promo-expire mb-3">
+                                    <i class="fas fa-clock text-primary me-2"></i>Berlaku sepanjang 2025
+                                </div>
+                                <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill py-2 px-4">Pesan Sekarang</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Promo End -->        
+
+        <!-- Pricing Start -->
+        <div class="container-fluid pricing py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Paket Layanan</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Daftar Harga Laundry</h1>
+                </div>
+
+                <!-- Main Services Table -->
+                <div class="table-responsive mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <table class="table table-bordered text-center">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th colspan="3" class="py-3">LAYANAN UTAMA</th>
+                            </tr>
+                            <tr>
+                                <th width="40%">Jenis Layanan</th>
+                                <th width="30%">Waktu Penyelesaian</th>
+                                <th width="30%">Harga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Cuci Setrika -->
+                            <tr>
+                                <td rowspan="3" class="align-middle">Cuci Setrika</td>
+                                <td>Express (6 jam)</td>
+                                <td class="fw-bold">Rp 13.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Reguler (1 hari)</td>
+                                <td class="fw-bold">Rp 10.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Ekonomis (4 hari)</td>
+                                <td class="fw-bold">Rp 7.000/kg</td>
+                            </tr>
+                            
+                            <!-- Cuci Kering -->
+                            <tr>
+                                <td rowspan="3" class="align-middle">Cuci Kering</td>
+                                <td>Express (6 jam)</td>
+                                <td class="fw-bold">Rp 11.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Reguler (1 hari)</td>
+                                <td class="fw-bold">Rp 8.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Ekonomis (4 hari)</td>
+                                <td class="fw-bold">Rp 5.000/kg</td>
+                            </tr>
+                            
+                            <!-- Setrika Saja -->
+                            <tr>
+                                <td rowspan="3" class="align-middle">Setrika Saja</td>
+                                <td>Express (6 jam)</td>
+                                <td class="fw-bold">Rp 10.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Reguler (1 hari)</td>
+                                <td class="fw-bold">Rp 7.000/kg</td>
+                            </tr>
+                            <tr>
+                                <td>Ekonomis (4 hari)</td>
+                                <td class="fw-bold">Rp 4.000/kg</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Additional Services Table -->
+                <div class="text-center mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <h3 class="text-primary">LAYANAN TAMBAHAN</h3>
+                </div>
+                
+                <div class="table-responsive wow fadeInUp" data-wow-delay="0.4s">
+                    <table class="table table-bordered">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th width="60%">Item</th>
+                                <th width="40%">Harga per Satuan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Perlengkapan Tidur -->
+                            <tr class="table-info">
+                                <td colspan="2" class="fw-bold">PERLENGKAPAN TIDUR</td>
+                            </tr>
+                            <tr>
+                                <td>Sprei Besar</td>
+                                <td class="fw-bold">Rp 12.500</td>
+                            </tr>
+                            <tr>
+                                <td>Sprei Sedang</td>
+                                <td class="fw-bold">Rp 9.000</td>
+                            </tr>
+                            <tr>
+                                <td>Sprei Kecil</td>
+                                <td class="fw-bold">Rp 5.000</td>
+                            </tr>
+                            <tr>
+                                <td>Selimut Besar</td>
+                                <td class="fw-bold">Rp 30.000</td>
+                            </tr>
+                            <tr>
+                                <td>Selimut Sedang</td>
+                                <td class="fw-bold">Rp 22.000</td>
+                            </tr>
+                            <tr>
+                                <td>Selimut Kecil</td>
+                                <td class="fw-bold">Rp 15.000</td>
+                            </tr>
+                            <tr>
+                                <td>Bantal/Guling</td>
+                                <td class="fw-bold">Rp 10.000</td>
+                            </tr>
+                            
+                            <!-- Pakaian Khusus -->
+                            <tr class="table-info">
+                                <td colspan="2" class="fw-bold">PAKAIAN KHUSUS</td>
+                            </tr>
+                            <tr>
+                                <td>Jas</td>
+                                <td class="fw-bold">Rp 25.000</td>
+                            </tr>
+                            <tr>
+                                <td>Kebaya</td>
+                                <td class="fw-bold">Rp 15.000</td>
+                            </tr>
+                            <tr>
+                                <td>Gaun Pengantin</td>
+                                <td class="fw-bold">Rp 30.000</td>
+                            </tr>
+                            <tr>
+                                <td>Jaket/Sweater</td>
+                                <td class="fw-bold">Rp 10.000</td>
+                            </tr>
+                            <tr>
+                                <td>Tao</td>
+                                <td class="fw-bold">Rp 10.000</td>
+                            </tr>
+                            
+                            <!-- Barang Lainnya -->
+                            <tr class="table-info">
+                                <td colspan="2" class="fw-bold">BARANG LAINNYA</td>
+                            </tr>
+                            <tr>
+                                <td>Boneka Besar</td>
+                                <td class="fw-bold">Rp 35.000</td>
+                            </tr>
+                            <tr>
+                                <td>Boneka Sedang</td>
+                                <td class="fw-bold">Rp 25.000</td>
+                            </tr>
+                            <tr>
+                                <td>Boneka Kecil</td>
+                                <td class="fw-bold">Rp 15.000</td>
+                            </tr>
+                            <tr>
+                                <td>Karpet</td>
+                                <td class="fw-bold">Rp 15.000/meter</td>
+                            </tr>
+                            <tr>
+                                <td>Sajadah</td>
+                                <td class="fw-bold">Rp 5.000</td>
+                            </tr>
+                            <tr>
+                                <td>Sleeping Bag</td>
+                                <td class="fw-bold">Rp 35.000</td>
+                            </tr>
+                            
+                            <!-- Sepatu & Khusus -->
+                            <tr class="table-info">
+                                <td colspan="2" class="fw-bold">SEPATU & KHUSUS</td>
+                            </tr>
+                            <tr>
+                                <td>Sepatu</td>
+                                <td class="fw-bold">Rp 15.000-30.000</td>
+                            </tr>
+                            <tr>
+                                <td>Helm</td>
+                                <td class="fw-bold">Rp 25.000-45.000</td>
+                            </tr>
+                            <tr>
+                                <td>Surpet Besar</td>
+                                <td class="fw-bold">Rp 35.000</td>
+                            </tr>
+                            <tr>
+                                <td>Surpet Sedang</td>
+                                <td class="fw-bold">Rp 30.000</td>
+                            </tr>
+                            <tr>
+                                <td>Surpet Kecil</td>
+                                <td class="fw-bold">Rp 25.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Pricing End -->
+
+        <!-- Modal Klaim Promo -->
+        <div class="modal fade" id="claimPromoModal" tabindex="-1" aria-labelledby="claimPromoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="claimPromoModalLabel">Klaim Promo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Promo berhasil diklaim! Silakan lanjutkan pemesanan.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <div class="footer-item">
+                                <h3 class="text-white mb-4"><i class="fas fa-soap text-primary me-3"></i>GoLaundry</h3>
+                                <p class="mb-3">Layanan laundry dan dry cleaning profesional dengan antar jemput gratis. Pakaian Anda layak mendapatkan perawatan terbaik.</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <a href="tel:+621234567890" class="h5 d-inline-block mb-0 text-white">+62 123 456 7890</a>
+                                    <p class="mb-0 text-white">24/7 Customer Service</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Layanan Kami</h4>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Lipat</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Setrika</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Dry Cleaning</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Layanan Express</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Karpet</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Sepatu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Jam Operasional</h4>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Senin - Jumat:</h6>
+                                <p class="text-white mb-0">09.00 - 20.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Sabtu - Minggu:</h6>
+                                <p class="text-white mb-0">08.00 - 19.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Layanan Darurat:</h6>
+                                <p class="text-white mb-0">24 Jam (Extra Charge)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Hubungi Kami</h4>
+                            <a href="#"><i class="fa fa-map-marker-alt me-2"></i> Jl. Adipati No.123, Bandung</a>
+                            <a href="mailto:info@golaundry.com"><i class="fas fa-envelope me-2"></i> info@golaundry.com</a>
+                            <a href="mailto:cs@golaundry.com"><i class="fas fa-envelope me-2"></i> cs@golaundry.com</a>
+                            <a href="https://wa.me/621234567890"><i class="fab fa-whatsapp me-2"></i> +62 123 456 7890</a>
+                            <div class="d-flex mt-3">
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-0" href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>GoLaundry</a>, Hak cipta dilindungi.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        Designed By <a class="border-bottom text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom text-white" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{url_for('static', filename = 'lib/wow/wow.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/easing/easing.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/counterup/counterup.min.js') }}"></script>
+        <script src="{{url_for('static', filename = 'lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        
+        <!-- Template Javascript -->
+        <script src="{{url_for('static', filename = 'js/main.js') }}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+
+    <head>
+        <meta charset="utf-8">
+        <title>GoLaundry - Layanan Laundry Profesional di Bandung</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="laundry, cuci pakaian, dry cleaning, antar jemput laundry" name="keywords">
+        <meta content="Layanan laundry profesional dengan antar jemput gratis di Bandung. Cuci, setrika, dan dry cleaning untuk semua kebutuhan pakaian Anda." name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{{url_for('static', filename = 'lib/animate/animate.min.css')}}" rel="stylesheet">
+        <link href="{{url_for('static', filename = 'lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{{url_for('static', filename = 'css/style.css')}}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Memuat...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary"><i class="fas fa-soap me-3"></i>GoLaundry</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ url_for('index') }}" class="nav-item nav-link">Beranda</a>
+                        <a href="{{ url_for('about') }}" class="nav-item nav-link">Tentang</a>
+                        <a href="{{ url_for('service') }}" class="nav-item nav-link">Layanan</a>
+                        <a href="{{ url_for('blog') }}" class="nav-item nav-link">Artikel</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ url_for('feature') }}" class="dropdown-item">Syarat & Ketentuan</a>
+                                <a href="{{ url_for('product') }}" class="dropdown-item">Cek status Pesanan</a>
+                                <a href="{{ url_for('team') }}" class="dropdown-item">Tim Kami</a>
+                                <a href="{{ url_for('testimonial') }}" class="dropdown-item">Testimoni</a>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('contact') }}" class="nav-item nav-link">Order</a>
+                    </div>
+                    <div class="d-none d-xl-flex me-3">
+                        <div class="d-flex flex-column pe-3 border-end border-primary">
+                            <span class="text-body">Gratis Antar Jemput</span>
+                            <a href="tel:+4733378901"><span class="text-primary">Telp: +62 123 456 7890</span></a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4">Pesan Sekarang</a>
+                </div>
+            </nav>
+
+            <!-- Carousel Start -->
+            <div class="carousel-header">
+                <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img src="{{url_for('static', filename = 'img/carousel-1.jpg')}}" class="img-fluid w-100" alt="Layanan Laundry Profesional">
+                            <div class="carousel-caption-1">
+                                <div class="carousel-caption-1-content" style="max-width: 900px;">
+                                    <h4 class="text-white text-uppercase fw-bold mb-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;" style="letter-spacing: 3px;">Perawatan Profesional</h4>
+                                    <h1 class="display-2 text-capitalize text-white mb-4 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1.3s" style="animation-delay: 1.3s;">Solusi Laundry untuk Gaya Hidup Modern</h1>
+                                    <p class="mb-5 fs-5 text-white fadeInLeft animated" data-animation="fadeInLeft" data-delay="1.5s" style="animation-delay: 1.5s;">Kami memberikan perawatan terbaik untuk pakaian Anda dengan teknologi terkini dan bahan ramah lingkungan.
+                                    </p>
+                                    <div class="carousel-caption-1-content-btn fadeInLeft animated" data-animation="fadeInLeft" data-delay="1.7s" style="animation-delay: 1.7s;">
+                                        <a class="btn btn-primary rounded-pill flex-shrink-0 py-3 px-5 me-2" href="{{ url_for('contact') }}">Pesan Sekarang</a>
+                                        <a class="btn btn-secondary rounded-pill flex-shrink-0 py-3 px-5 ms-2" href="{{ url_for('service') }}">Lihat Layanan</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{url_for('static', filename = 'img/carousel-2.jpg')}}" class="img-fluid w-100" alt="Layanan Ramah Lingkungan">
+                            <div class="carousel-caption-2">
+                                <div class="carousel-caption-2-content" style="max-width: 900px;">
+                                    <h4 class="text-white text-uppercase fw-bold mb-4 fadeInRight animated" data-animation="fadeInRight" data-delay="1s" style="animation-delay: 1s;" style="letter-spacing: 3px;">Ramah Lingkungan</h4>
+                                    <h1 class="display-2 text-capitalize text-white mb-4 fadeInRight animated" data-animation="fadeInRight" data-delay="1.3s" style="animation-delay: 1.3s;">Komitmen Kami untuk Bumi yang Lebih Hijau</h1>
+                                    <p class="mb-5 fs-5 text-white fadeInRight animated" data-animation="fadeInRight" data-delay="1.5s" style="animation-delay: 1.5s;">Menggunakan deterjen biodegradable dan proses hemat energi untuk mengurangi dampak lingkungan.
+                                    </p>
+                                    <div class="carousel-caption-2-content-btn fadeInRight animated" data-animation="fadeInRight" data-delay="1.7s" style="animation-delay: 1.7s;">
+                                        <a class="btn btn-primary rounded-pill flex-shrink-0 py-3 px-5 me-2" href="{{ url_for('contact') }}">Pesan Sekarang</a>
+                                        <a class="btn btn-secondary rounded-pill flex-shrink-0 py-3 px-5 ms-2" href="{{ url_for('about') }}">Tentang Kami</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon btn btn-primary fadeInLeft animated" aria-hidden="true" data-animation="fadeInLeft" data-delay="1.1s" style="animation-delay: 1.3s;"> <i class="fa fa-angle-left fa-3x"></i></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon btn btn-primary fadeInRight animated" aria-hidden="true" data-animation="fadeInLeft" data-delay="1.1s" style="animation-delay: 1.3s;"><i class="fa fa-angle-right fa-3x"></i></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Carousel End -->
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Features Start -->
+        <div class="container-fluid feature bg-light py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Keunggulan Kami</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Mengapa Memilih GoLaundry?</h1>
+                    <p class="mb-4">Kami memberikan pengalaman laundry yang berbeda dengan layanan berkualitas tinggi dan kemudahan yang tak tertandingi.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="feature-item p-4 rounded text-center h-100">
+                            <div class="feature-icon mb-4">
+                                <i class="fas fa-bolt text-white fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Layanan Express</h4>
+                            <p class="mb-3">Penyelesaian cepat dalam 4 jam untuk kebutuhan mendesak dengan kualitas terjamin.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="feature-item p-4 rounded text-center h-100">
+                            <div class="feature-icon mb-4">
+                                <i class="fas fa-truck text-white fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Antar Jemput Gratis</h4>
+                            <p class="mb-3">Kami menjemput dan mengantarkan laundry Anda tanpa biaya tambahan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="feature-item p-4 rounded text-center h-100">
+                            <div class="feature-icon mb-4">
+                                <i class="fas fa-leaf text-white fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Ramah Lingkungan</h4>
+                            <p class="mb-3">Menggunakan deterjen biodegradable dan teknologi hemat energi.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="feature-item p-4 rounded text-center h-100">
+                            <div class="feature-icon mb-4">
+                                <i class="fas fa-shield-alt text-white fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Garansi Kepuasan</h4>
+                            <p class="mb-3">Garansi 100% uang kembali jika tidak puas dengan layanan kami.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features End -->
+
+        <!-- How It Works Start -->
+        <div class="container-fluid process py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Proses Kami</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Cara Kerja Layanan Kami</h1>
+                    <p class="mb-4">Hanya dengan 4 langkah mudah, pakaian Anda akan kembali bersih dan rapi.</p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="process-item p-4 text-center rounded">
+                            <div class="process-icon mb-4">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle text-white" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-mobile-alt fa-2x"></i>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Pesan Online</h4>
+                            <p class="mb-0">Pesan melalui website atau aplikasi kami dengan mudah.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="process-item p-4 text-center rounded">
+                            <div class="process-icon mb-4">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle text-white" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-truck fa-2x"></i>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Jemput Gratis</h4>
+                            <p class="mb-0">Tim kami akan menjemput pakaian Anda di lokasi yang ditentukan.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="process-item p-4 text-center rounded">
+                            <div class="process-icon mb-4">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle text-white" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-tshirt fa-2x"></i>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Proses Profesional</h4>
+                            <p class="mb-0">Pakaian Anda diproses dengan standar kualitas tertinggi.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="process-item p-4 text-center rounded">
+                            <div class="process-icon mb-4">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle text-white" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-home fa-2x"></i>
+                                </div>
+                            </div>
+                            <h4 class="mb-3">Antar ke Rumah</h4>
+                            <p class="mb-0">Pakaian bersih diantar kembali ke alamat Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How It Works End -->
+
+        <!-- About Section Start -->
+        <div class="container-fluid about overflow-hidden py-5">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="about-img rounded h-100">
+                            <img src="{{url_for('static', filename = 'img/about.jpg')}}" class="img-fluid rounded h-100 w-100" style="object-fit: cover;" alt="">
+                            <div class="about-exp"><span>10 Tahun Pengalaman</span></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="about-item">
+                            <h4 class="text-primary text-uppercase">Tentang Kami</h4>
+                            <h1 class="display-3 mb-3">Layanan Laundry & Dry Cleaning Profesional</h1>
+                            <p class="mb-4">GoLaundry telah menyediakan layanan laundry berkualitas sejak 2015. Kami bangga dengan perhatian terhadap detail dan komitmen untuk kepuasan pelanggan. Tim profesional kami menggunakan peralatan canggih dan produk ramah lingkungan untuk memastikan pakaian Anda terlihat terbaik.
+                            </p>
+                            <div class="bg-light rounded p-4 mb-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="pe-4">
+                                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-smile text-white fa-2x"></i></div>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" class="h4 d-inline-block mb-3">Pelanggan Puas</a>
+                                                <p class="mb-0">Ribuan pelanggan bahagia mempercayakan kebutuhan laundry mereka kepada kami setiap minggu.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-light rounded p-4 mb-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="pe-4">
+                                                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;"><i class="fas fa-trophy text-white fa-2x"></i></div>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" class="h4 d-inline-block mb-3">Penghargaan</a>
+                                                <p class="mb-0">Diakui sebagai layanan laundry terbaik di wilayah ini selama 3 tahun berturut-turut.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('about') }}" class="btn btn-secondary rounded-pill py-3 px-5">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About Section End -->
+
+        <!-- Service Highlights Start -->
+        <div class="container-fluid service-highlights py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Layanan Unggulan</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Yang Kami Tawarkan</h1>
+                    <p class="mb-4">Berbagai pilihan layanan untuk memenuhi semua kebutuhan perawatan pakaian Anda.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-card rounded p-4 text-center h-100">
+                            <div class="service-icon mb-4">
+                                <i class="fas fa-tshirt text-primary fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Cuci & Lipat</h4>
+                            <p class="mb-3">Layanan dasar untuk pakaian sehari-hari dengan hasil bersih dan rapi.</p>
+                            <a href="{{ url_for('service') }}" class="btn btn-outline-primary rounded-pill">Detail Layanan</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="service-card rounded p-4 text-center h-100">
+                            <div class="service-icon mb-4">
+                                <i class="fas fa-iron text-primary fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Cuci & Setrika</h4>
+                            <p class="mb-3">Pakaian bersih dan rapi siap pakai dengan penyetrikaan profesional.</p>
+                            <a href="{{ url_for('service') }}" class="btn btn-outline-primary rounded-pill">Detail Layanan</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="service-card rounded p-4 text-center h-100">
+                            <div class="service-icon mb-4">
+                                <i class="fas fa-soap text-primary fa-3x"></i>
+                            </div>
+                            <h4 class="mb-3">Dry Cleaning</h4>
+                            <p class="mb-3">Perawatan khusus untuk pakaian berbahan delicate dan pakaian formal.</p>
+                            <a href="{{ url_for('service') }}" class="btn btn-outline-primary rounded-pill">Detail Layanan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.8s">
+                    <a href="{{ url_for('service') }}" class="btn btn-primary rounded-pill py-3 px-5">Lihat Semua Layanan</a>
+                </div>
+            </div>
+        </div>
+        <!-- Service Highlights End -->
+
+        <!-- Blog Highlights Start -->
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Tips & Artikel</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Informasi Terbaru Seputar Laundry</h1>
+                    <p class="mb-0">Temukan tips bermanfaat dan artikel terbaru tentang perawatan pakaian dari tim profesional kami</p>
+                </div>
+                <div class="row g-4 justify-content-center" id="article-container">
+                    <!-- Artikel 1 -->
+                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{url_for('static', filename = 'img/blog-1.jpg')}}" class="img-fluid rounded-top w-100" alt="Tips mencuci pakaian putih">
+                                <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i> 15 Jan 2025</div>
+                            </div>
+                            <div class="blog-content rounded-bottom p-4">
+                                <a href="#" class="h4 d-inline-block mb-3">5 Kesalahan Saat Mencuci Pakaian Putih</a>
+                                <p>Pelajari cara menghindari kesalahan umum yang membuat pakaian putih menguning atau rusak. Temukan teknik pencucian yang tepat untuk menjaga warna putih tetap cemerlang.</p>
+                                <a href="#" class="fw-bold text-secondary">Selengkapnya <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Artikel 2 -->
+                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{url_for('static', filename = 'img/blog-2.jpg')}}" class="img-fluid rounded-top w-100" alt="Merawat baju batik">
+                                <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i> 02 Maret 2025</div>
+                            </div>
+                            <div class="blog-content rounded-bottom p-4">
+                                <a href="#" class="h4 d-inline-block mb-3">Cara Merawat Baju Batik Agar Tidak Luntur</a>
+                                <p>Tips khusus untuk mencuci dan menyimpan baju batik kesayangan Anda. Pelajari teknik pencucian manual yang aman untuk kain tradisional ini.</p>
+                                <a href="#" class="fw-bold text-secondary">Selengkapnya <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Artikel 3 -->
+                    <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{url_for('static', filename = 'img/blog-3.jpg')}}" class="img-fluid rounded-top w-100" alt="Keuntungan laundry kiloan">
+                                <div class="blog-date px-4 py-2"><i class="fa fa-calendar-alt me-1"></i> 18 Jun 2025</div>
+                            </div>
+                            <div class="blog-content rounded-bottom p-4">
+                                <a href="#" class="h4 d-inline-block mb-3">Keuntungan Laundry Kiloan Dibanding Cuci Sendiri</a>
+                                <p>Analisis biaya dan manfaat menggunakan jasa laundry profesional untuk kebutuhan harian. Temukan bagaimana bisa menghemat waktu dan uang.</p>
+                                <a href="#" class="fw-bold text-secondary">Selengkapnya <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog Highlights End -->
+
+        <!-- Testimoni Start -->
+        <div class="container-fluid testimonial-highlight py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-uppercase text-primary">Apa Kata Mereka</h4>
+                    <h1 class="display-3 text-capitalize mb-3">Pelanggan Puas dengan Layanan Kami</h1>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="testimonial-item p-4 rounded text-center">
+                            <div class="testimonial-img mb-3">
+                                <img src="{{url_for('static', filename = 'img/testimonial-1.jpg')}}" class="img-fluid rounded-circle" style="width: 100px; height: 100px;" alt="Testimoni 1">
+                            </div>
+                            <div class="testimonial-rating mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="mb-3">"Pelayanan cepat dan pakaian selalu kembali bersih dan wangi. Sudah langganan 2 tahun!"</p>
+                            <h5 class="mb-0">Sarah Wijaya</h5>
+                            <small>Ibu Rumah Tangga</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="testimonial-item p-4 rounded text-center">
+                            <div class="testimonial-img mb-3">
+                                <img src="{{url_for('static', filename = 'img/testimonial-2.jpg')}}" class="img-fluid rounded-circle" style="width: 100px; height: 100px;" alt="Testimoni 2">
+                            </div>
+                            <div class="testimonial-rating mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="mb-3">"Dry cleaning jas saya selalu sempurna. Harga terjangkau untuk kualitas bintang lima."</p>
+                            <h5 class="mb-0">Budi Santoso</h5>
+                            <small>Pelanggan setia</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="testimonial-item p-4 rounded text-center">
+                            <div class="testimonial-img mb-3">
+                                <img src="{{url_for('static', filename = 'img/testimonial-3.jpg')}}" class="img-fluid rounded-circle" style="width: 100px; height: 100px;" alt="Testimoni 3">
+                            </div>
+                            <div class="testimonial-rating mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="mb-3">"Layanan antar jemput sangat membantu jadwal sibuk saya. Recommended banget!"</p>
+                            <h5 class="mb-0">Dewi Anggraeni</h5>
+                            <small>Pelanggan Baru</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial Highlight End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <div class="footer-item">
+                                <h3 class="text-white mb-4"><i class="fas fa-soap text-primary me-3"></i>GoLaundry</h3>
+                                <p class="mb-3">Layanan laundry dan dry cleaning profesional dengan antar jemput gratis. Pakaian Anda layak mendapatkan perawatan terbaik.</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <a href="tel:+621234567890" class="h5 d-inline-block mb-0 text-white">+62 123 456 7890</a>
+                                    <p class="mb-0 text-white">24/7 Customer Service</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Layanan Kami</h4>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Lipat</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci & Setrika</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Dry Cleaning</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Layanan Express</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Karpet</a>
+                            <a href="{{ url_for('service') }}"><i class="fas fa-angle-right me-2"></i> Cuci Sepatu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Jam Operasional</h4>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Senin - Jumat:</h6>
+                                <p class="text-white mb-0">09.00 - 20.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Sabtu - Minggu:</h6>
+                                <p class="text-white mb-0">08.00 - 19.00</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted mb-0">Layanan Darurat:</h6>
+                                <p class="text-white mb-0">24 Jam (Extra Charge)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item d-flex flex-column">
+                            <h4 class="text-white mb-4">Hubungi Kami</h4>
+                            <a href="#"><i class="fa fa-map-marker-alt me-2"></i> Jl. Adipati No.123, Bandung</a>
+                            <a href="mailto:info@golaundry.com"><i class="fas fa-envelope me-2"></i> info@golaundry.com</a>
+                            <a href="mailto:cs@golaundry.com"><i class="fas fa-envelope me-2"></i> cs@golaundry.com</a>
+                            <a href="https://wa.me/621234567890"><i class="fab fa-whatsapp me-2"></i> +62 123 456 7890</a>
+                            <div class="d-flex mt-3">
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-2" href="#"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-secondary btn-md-square rounded-circle me-0" href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>GoLaundry</a>, Hak Cipta Dilindungi.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        Designed By <a class="border-bottom text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom text-white" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-secondary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{url_for('static', filename = 'lib/wow/wow.min.js')}}"></script>
+    <script src="{{url_for('static', filename = 'lib/easing/easing.min.js')}}"></script>
+    <script src="{{url_for('static', filename = 'lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{url_for('static', filename = 'lib/counterup/counterup.min.js')}}"></script>
+    <script src="{{url_for('static', filename = 'lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    
+
+    <!-- Template Javascript -->
+    <script src="{{url_for('static', filename = 'js/main.js')}}"></script>
+    </body>
+
+</html>
